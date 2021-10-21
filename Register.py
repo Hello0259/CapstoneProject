@@ -1,0 +1,40 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.select import Select
+
+s = Service("C:\Drivers\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+driver.maximize_window()
+driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account")
+driver.find_element(By.ID, 'email_create').send_keys("erborleo@gmail.com")
+driver.find_element(By.ID, 'SubmitCreate').click()
+time.sleep(10)
+driver.find_element(By.XPATH, '//*[@id="id_gender1"]').click()
+driver.find_element(By.ID, 'customer_firstname').send_keys("Ernest")
+driver.find_element(By.ID, 'customer_lastname').send_keys("Borleo")
+driver.find_element(By.ID, 'passwd').send_keys("12345")
+day=Select(driver.find_element(By.XPATH, '//*[@id="days"]'))
+day.select_by_value("19")
+months=Select(driver.find_element(By.XPATH, '//*[@id="months"]'))
+months.select_by_value("2")
+year=Select(driver.find_element(By.XPATH, '//*[@id="years"]'))
+year.select_by_value("2000")
+driver.find_element(By.XPATH, '//*[@id="newsletter"]').click()
+driver.find_element(By.XPATH, '//*[@id="optin"]').click()
+driver.find_element(By.ID, 'company').send_keys("UDM")
+driver.find_element(By.ID, 'address1').send_keys("Manila, Metro Manila")
+driver.find_element(By.ID, 'address2').send_keys("Group 15")
+driver.find_element(By.ID, 'city').send_keys("Manila")
+state=Select(driver.find_element(By.XPATH, '//*[@id="id_state"]'))
+state.select_by_value("3")
+driver.find_element(By.ID, 'postcode').send_keys("00000")
+country=Select(driver.find_element(By.XPATH, '//*[@id="id_country"]'))
+country.select_by_value("21")
+driver.find_element(By.ID, 'other').send_keys("Lorem ipsum")
+driver.find_element(By.ID, 'phone').send_keys("022151515")
+driver.find_element(By.ID, 'phone_mobile').send_keys("091515151551")
+driver.find_element(By.ID, 'alias').send_keys("address ko")
+driver.find_element(By.XPATH, '//*[@id="submitAccount"]/span').click()
+
